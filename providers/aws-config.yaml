@@ -7,6 +7,16 @@ spec:
   credentials:
     source: Secret
     secretRef:
-      namespace: crossplane-system
       name: aws-creds
+      namespace: crossplane-system
       key: creds
+  endpoint:
+    hostnameImmutable: true
+    services: [iam, s3, sqs, sts]
+    url:
+      type: Static
+      static: http://host.docker.internal:4566
+  skip_credentials_validation: true
+  skip_metadata_api_check: true
+  skip_requesting_account_id: true
+  s3_use_path_style: true
